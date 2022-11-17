@@ -29,6 +29,9 @@ struct Room
     string reserverName;
 };
 
+// Number of Total Rooms, used vectors so that I don't have to set an array number.
+vector<Room> rooms(5);
+
 // gets the discount rate randomly (0%, 10%, 20%)
 float discount()
 {
@@ -67,9 +70,8 @@ int getChoice()
     return choice;
 }
 
-int introduction()
+int introduction(int option)
 {
-    int option;
     cout << endl
          << "WELCOME TO ZHIYUAN's HOTEL BOOKING SYSTEM!" << endl;
     cout << "1. Make a reservation" << endl;
@@ -80,11 +82,68 @@ int introduction()
     return option;
 }
 
+int reserveRoom(int roomOption, int totalNumberOfSingleRooms, int totalNumberOfDoubleRooms, float discountPercent, int runTime)
+{
+    cout << "How many days do you want to reserve?" << endl;
+    std::cin >> rooms[runTime].numberOfDays;
+    cout << "Would you like a: " << endl
+         << "1. Single Room (100 EUR, " << totalNumberOfSingleRooms << " rooms left)" << endl
+
+         << "2. Double Room (150 EUR, " << totalNumberOfDoubleRooms << " rooms left)" << endl;
+    std::cin >> roomOption;
+
+    cout << "Thank you! Now We need your name, input your name " << endl;
+    cin.ignore();
+    std::getline(std::cin, rooms[runTime].reserverName);
+    switch (roomOption)
+    {
+    case 1:
+        if (totalNumberOfSingleRooms == 0)
+        {
+            cout << "There's no more single rooms";
+        }
+        else
+        {
+            discountPercent = discount();
+            rooms[runTime].totalCost = rooms[runTime].numberOfDays * (SINGLE_ROOM - SINGLE_ROOM * discountPercent);
+            cout << "Thank you " << rooms[runTime].reserverName << "! The total cost is " << rooms[runTime].totalCost << "." << endl
+                 << "Your Discount was " << discountPercent * 100 << "%. " << endl;
+            rooms[runTime].reservedNumber = reservationNumber();
+            cout << "Your reservation number is " << rooms[runTime].reservedNumber << " "
+                 << "(Use this to check your reservation)" << endl;
+            rooms[runTime].roomType = "single room";
+            totalNumberOfSingleRooms = totalNumberOfSingleRooms - 1;
+        }
+
+        break;
+
+    case 2:
+        if (totalNumberOfDoubleRooms == 0)
+        {
+            cout << "There's no more double rooms";
+        }
+        else
+        {
+            discountPercent = discount();
+            rooms[runTime].totalCost = rooms[runTime].numberOfDays * (DOUBLE_ROOM - DOUBLE_ROOM * discountPercent);
+            cout << "Thank you " << rooms[runTime].reserverName << "! The total cost is " << rooms[runTime].totalCost << "." << endl
+                 << "Your Discount was " << discountPercent * 100 << "%. " << endl;
+            rooms[runTime].reservedNumber = reservationNumber();
+            cout << "Your reservation number is " << rooms[runTime].reservedNumber << " "
+                 << "(Use this to check your reservation)" << endl;
+            rooms[runTime].roomType = "double room";
+            totalNumberOfDoubleRooms = totalNumberOfDoubleRooms - 1;
+        }
+
+        break;
+    default:
+        cout << "Please enter a valid value :)";
+    };
+}
+
 int main()
 {
 
-    // Number of Total Rooms, used vectors so that I don't have to set an array number.
-    vector<Room> rooms(5);
     // Used in matching the reservation
     Room matchedReservation;
 
@@ -105,7 +164,7 @@ int main()
     {
         runTime += 1;
         // The intro basically
-        introduction();
+        introduction(option);
         std::cin >> option;
         // If the user enters a letter then the program just complains (not final because I want the program to rerun)
         if (cin.fail())
@@ -122,61 +181,7 @@ int main()
 
             // If the user wants to book something, then we ask for the room number first then the room type
             case 1:
-                cout << "How many days do you want to reserve?" << endl;
-                std::cin >> rooms[runTime].numberOfDays;
-                cout << "Would you like a: " << endl
-                     << "1. Single Room (100 EUR, " << totalNumberOfSingleRooms << " rooms left)" << endl
-
-                     << "2. Double Room (150 EUR, " << totalNumberOfDoubleRooms << " rooms left)" << endl;
-                std::cin >> roomOption;
-
-                cout << "Thank you! Now We need your name, input your name " << endl;
-                cin.ignore();
-                std::getline(std::cin, rooms[runTime].reserverName);
-                switch (roomOption)
-                {
-                case 1:
-                    if (totalNumberOfSingleRooms == 0)
-                    {
-                        cout << "There's no more single rooms";
-                    }
-                    else
-                    {
-                        discountPercent = discount();
-                        rooms[runTime].totalCost = rooms[runTime].numberOfDays * (SINGLE_ROOM - SINGLE_ROOM * discountPercent);
-                        cout << "Thank you " << rooms[runTime].reserverName << "! The total cost is " << rooms[runTime].totalCost << "." << endl
-                             << "Your Discount was " << discountPercent * 100 << "%. " << endl;
-                        rooms[runTime].reservedNumber = reservationNumber();
-                        cout << "Your reservation number is " << rooms[runTime].reservedNumber << " "
-                             << "(Use this to check your reservation)" << endl;
-                        rooms[runTime].roomType = "single room";
-                        totalNumberOfSingleRooms = totalNumberOfSingleRooms - 1;
-                    }
-
-                    break;
-
-                case 2:
-                    if (totalNumberOfDoubleRooms == 0)
-                    {
-                        cout << "There's no more double rooms";
-                    }
-                    else
-                    {
-                        discountPercent = discount();
-                        rooms[runTime].totalCost = rooms[runTime].numberOfDays * (DOUBLE_ROOM - DOUBLE_ROOM * discountPercent);
-                        cout << "Thank you " << rooms[runTime].reserverName << "! The total cost is " << rooms[runTime].totalCost << "." << endl
-                             << "Your Discount was " << discountPercent * 100 << "%. " << endl;
-                        rooms[runTime].reservedNumber = reservationNumber();
-                        cout << "Your reservation number is " << rooms[runTime].reservedNumber << " "
-                             << "(Use this to check your reservation)" << endl;
-                        rooms[runTime].roomType = "double room";
-                        totalNumberOfDoubleRooms = totalNumberOfDoubleRooms - 1;
-                    }
-
-                    break;
-                default:
-                    cout << "Please enter a valid value :)";
-                };
+                reserveRoom(roomOption, totalNumberOfSingleRooms, totalNumberOfDoubleRooms, discountPercent, runTime);
                 break;
 
             case 2:
@@ -222,13 +227,7 @@ int main()
                 }
                 if (isTheReservationMatched == true)
                 {
-                    cout << "How many days do you want to reserve?" << endl;
-                    std::cin >> rooms[runTime].numberOfDays;
-                    cout << "Would you like a: " << endl
-                         << "1. Single Room (100 EUR, " << totalNumberOfSingleRooms << " rooms left)" << endl
-
-                         << "2. Double Room (150 EUR, " << totalNumberOfDoubleRooms << " rooms left)" << endl;
-                    std::cin >> roomOption;
+                    reserveRoom(roomOption, totalNumberOfSingleRooms, totalNumberOfDoubleRooms, discountPercent, runTime);
                 }
                 else if (isTheReservationMatched == false)
                 {
