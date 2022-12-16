@@ -1,7 +1,7 @@
 # hotel-reservation-c++
-#A hotel reservation system built with c++
-#TAMK HOTEL RESERVATION SYSTEM C++
-#MADE BY ZHIYUAN LIU 
+# A hotel reservation system built with c++
+# TAMK HOTEL RESERVATION SYSTEM C++
+# MADE BY ZHIYUAN LIU 
 The program only uses 600kb of memory in the stack! (probably because of vectors? I didn’t really try to optimize the program) 
 This reservation program allows the user to book a room, check their reservation with their reservation number and name (need both the number and name because that’s how real hotel does it, I want it to seem a bit more professional). And the user has the right to change the reservation by inputing their reservation number and name. And of course, the user has the option to delete the reservation. By the way, the user can’t just select the room number they want to book, because it makes no sense to me, I have never been to a hotel where I can choose what room number I want to be in. But obviously, the room type (single or double) is bookable.
 This is how it looks like in the beginning:
