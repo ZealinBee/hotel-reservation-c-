@@ -37,7 +37,7 @@ When you click change reservation, here is what happens:
 Enter your reservation number: 33927  
 Enter your reservation name: zhiyuan liu  
 How many days do you want to reserve? (no more than 20 days)  
-2
+2  
 Would you like a:  
 1. Single Room (100 EUR, 28 rooms left)  
 2. Double Room (150 EUR, 28 rooms left)  
