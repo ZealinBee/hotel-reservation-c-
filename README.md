@@ -15,8 +15,8 @@ Here is what happens when you book a room :
 How many days do you want to reserve? (no more than 20 days)  
 13  
 Would you like a:   
-1. Single Room (100 EUR, 30 rooms left)  
-2. Double Room (150 EUR, 30 rooms left)  
+1.Single Room (100 EUR, 30 rooms left)  
+2.Double Room (150 EUR, 30 rooms left)  
 1  
 Thank you! Now We need your name, input your name  
 zhiyuan liu  
