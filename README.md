@@ -4,12 +4,12 @@ TAMK HOTEL RESERVATION SYSTEM C++
 The program only uses 600kb of memory in the stack! (probably because of vectors? I didn’t really try to optimize the program) 
 This reservation program allows the user to book a room, check their reservation with their reservation number and name (need both the number and name because that’s how real hotel does it, I want it to seem a bit more professional). And the user has the right to change the reservation by inputing their reservation number and name. And of course, the user has the option to delete the reservation. By the way, the user can’t just select the room number they want to book, because it makes no sense to me, I have never been to a hotel where I can choose what room number I want to be in. But obviously, the room type (single or double) is bookable.
 This is how it looks like in the beginning:
-WELCOME TO ZHIYUAN's HOTEL BOOKING SYSTEM!
+- WELCOME TO ZHIYUAN's HOTEL BOOKING SYSTEM!
 1. Make a reservation
 2. Check your reservation
 3. Change Reservation
 4. Quit Application
-The user will enter a number, from 1 – 4, if the user enters something invalid like many letters or too much input ,then the program will tell the user that they are putting the wrong input and need to put the correct input. The program will not crash from wrong inputs, because I built a input validation system function and validate every input entered.
+- The user will enter a number, from 1 – 4, if the user enters something invalid like many letters or too much input ,then the program will tell the user that they are putting the wrong input and need to put the correct input. The program will not crash from wrong inputs, because I built a input validation system function and validate every input entered.
 When you make a reservation, the program will ask you for the room type, whether it is single room or double room, there is a random number of rooms generated every time, from 40 – 80 even number of rooms. And the number of rooms will decrease everytime the user successfully book a room.
 Here is what happens when you book a room :
 How many days do you want to reserve? (no more than 20 days)
